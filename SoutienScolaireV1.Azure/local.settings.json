@@ -1,0 +1,11 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "ApplicationDB": "Data Source=Data\\database.db",
+    "AzureWebJobsStorage": "AzureWebJobsStorageConnectionStringValue",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet"
+  },
+  "Host": {
+    "CORS": "*"
+  }
+}
