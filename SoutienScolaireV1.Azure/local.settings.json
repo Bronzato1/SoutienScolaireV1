@@ -1,8 +1,7 @@
 {
   "IsEncrypted": false,
   "Values": {
-    "ApplicationDB": "Data Source=Data\\database.db",
-    "AzureWebJobsStorage": "AzureWebJobsStorageConnectionStringValue",
+    "local_DB_path": "Data\\database.db",
     "FUNCTIONS_WORKER_RUNTIME": "dotnet"
   },
   "Host": {

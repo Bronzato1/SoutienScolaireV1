@@ -3,32 +3,43 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
 namespace SoutienScolaireV1.Azure.Models
 {
     public class ApplicationDbContext : DbContext
     {
         public DbSet<Employee> Employees { get; set; }
+        
+        private readonly ILogger<ApplicationDbContext> _logger;
+
+        string local_DB_path;
+        string azure_DB_path;
+        string executionRoot;
+
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, ILogger<ApplicationDbContext> logger) : base(options)
+        {
+            _logger = logger;
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //https://stackoverflow.com/questions/70830656/function-app-entity-framework-net-6-and-environment-variables
-            //https://github.com/Azure/Azure-Functions/issues/2183
+            _logger.LogInformation("Called OnConfiguring in class ApplicationDbContext");
 
-            var configuration = new ConfigurationBuilder()
-            .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("local.settings.json")
-            .Build();
+            bool isDevEnv = Environment.GetEnvironmentVariable("AZURE_FUNCTIONS_ENVIRONMENT") == "Development" ? true : false;
+            executionRoot = Environment.GetEnvironmentVariable("HOME") + "\\site\\wwwroot"; // where the azure function is running
+            local_DB_path = Environment.GetEnvironmentVariable("local_DB_path"); // found in local.settings.json for development - Data\\database.db
+            azure_DB_path = Environment.GetEnvironmentVariable("azure_DB_path"); // found in azure portal  environment variables - D:\\home\\database.db
 
-            var connectionString = Environment.GetEnvironmentVariable("ApplicationDB") ?? configuration.GetSection("values").GetValue<string>("ApplicationDB");
+            _logger.LogInformation($"executionRoot {executionRoot}");
+            _logger.LogInformation($"Data Source={(isDevEnv ? local_DB_path : azure_DB_path)}");
 
-            Console.Out.WriteLine("connectionString: " + connectionString);
-
-            optionsBuilder.UseSqlite(connectionString);
+            optionsBuilder.UseSqlite($"Data Source={(isDevEnv ? local_DB_path : azure_DB_path)}");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
