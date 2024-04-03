@@ -1,0 +1,64 @@
+﻿@page "/employeelist"
+
+@using System.Text.Json
+
+@code 
+{
+    public string DisplayMessage { get; set; }
+    public Employee[] _employees { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        DisplayMessage = "hello!";
+        await PopulateTable();
+    }
+
+    private async Task PopulateTable()
+    {
+
+        HttpClient client = new HttpClient { BaseAddress = new Uri("http://localhost:7071/api/employee") };
+
+        HttpResponseMessage response = null;
+
+        response = await client.GetAsync(client.BaseAddress);
+
+        if (response.Content is object && response.Content.Headers.ContentType.MediaType == "application/json")
+        {
+            var content = await response.Content.ReadAsStringAsync();
+            _employees = JsonSerializer.Deserialize<Employee[]>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+        }
+    }
+
+}
+
+<p>@DisplayMessage</p>
+
+@if (_employees != null)
+{
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Firstname</th>
+                <th scope="col">Lastname</th>
+                <th scope="col">Email</th>
+                <th scope="col">Department</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var employee in _employees)
+            {
+                <tr>
+                    <td>@employee.FirstName</td>
+                    <td>@employee.LastName</td>
+                    <td>@employee.Email</td>
+                    <td>@employee.Department</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    DisplayMessage = "Hello!";
+}

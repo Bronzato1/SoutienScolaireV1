@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoutienScolaireV1.Shared", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoutienScolaireV1.Website", "SoutienScolaireV1.Website\SoutienScolaireV1.Website.csproj", "{AF50C78A-0633-447E-9F0C-EFC211D2F1E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoutienScolaireV1.Azure", "SoutienScolaireV1.Azure\SoutienScolaireV1.Azure.csproj", "{FA26C76B-9765-4A0B-A3F3-C0AA8C1B574D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoutienScolaireV1.Azure", "SoutienScolaireV1.Azure\SoutienScolaireV1.Azure.csproj", "{FA26C76B-9765-4A0B-A3F3-C0AA8C1B574D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
