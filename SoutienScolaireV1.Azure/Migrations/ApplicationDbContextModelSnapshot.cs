@@ -6,7 +6,7 @@ using SoutienScolaireV1.Azure.Models;
 
 #nullable disable
 
-namespace SoutienScolaire.Azure.Migrations
+namespace SoutienScolaireV1.Azure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot

@@ -7,10 +7,10 @@ using SoutienScolaireV1.Azure.Models;
 
 #nullable disable
 
-namespace SoutienScolaire.Azure.Migrations
+namespace SoutienScolaireV1.Azure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240329164506_InitialCreate")]
+    [Migration("20240403170404_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

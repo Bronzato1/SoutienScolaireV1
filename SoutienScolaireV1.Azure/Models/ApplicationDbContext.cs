@@ -21,6 +21,13 @@ namespace SoutienScolaireV1.Azure.Models
         string local_DB_path;
         string azure_DB_path;
         string executionRoot;
+        
+        public ApplicationDbContext() 
+        {
+            // Constructor parameterless will be used for...
+            // dotnet ef migrations add...
+            // dotnet ef database update...
+        }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, ILogger<ApplicationDbContext> logger) : base(options)
         {
@@ -29,15 +36,21 @@ namespace SoutienScolaireV1.Azure.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            _logger.LogInformation("Called OnConfiguring in class ApplicationDbContext");
-
             bool isDevEnv = Environment.GetEnvironmentVariable("AZURE_FUNCTIONS_ENVIRONMENT") == "Development" ? true : false;
             executionRoot = Environment.GetEnvironmentVariable("HOME") + "\\site\\wwwroot"; // where the azure function is running
             local_DB_path = Environment.GetEnvironmentVariable("local_DB_path"); // found in local.settings.json for development - Data\\database.db
             azure_DB_path = Environment.GetEnvironmentVariable("azure_DB_path"); // found in azure portal  environment variables - D:\\home\\database.db
 
-            _logger.LogInformation($"executionRoot {executionRoot}");
-            _logger.LogInformation($"Data Source={(isDevEnv ? local_DB_path : azure_DB_path)}");
+            if (_logger != null)
+            {
+                _logger.LogInformation($"--> Called OnConfiguring in class ApplicationDbContext");
+                _logger.LogInformation($"--> executionRoot {executionRoot}");
+                _logger.LogInformation($"--> Data Source={(isDevEnv ? local_DB_path : azure_DB_path)}");
+            }
+
+            Console.WriteLine($"--> AZURE_FUNCTIONS_ENVIRONMENT: {Environment.GetEnvironmentVariable("AZURE_FUNCTIONS_ENVIRONMENT")}");
+            Console.WriteLine($"--> local_DB_path: {Environment.GetEnvironmentVariable("local_DB_path")}");
+            Console.WriteLine($"--> isDevEnv: {isDevEnv}");
 
             optionsBuilder.UseSqlite($"Data Source={(isDevEnv ? local_DB_path : azure_DB_path)}");
         }

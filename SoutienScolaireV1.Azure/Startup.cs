@@ -29,7 +29,7 @@ namespace SoutienScolaire.Azure
         }
 
         public override void Configure(IFunctionsHostBuilder builder)
-        {            
+        {
             bool isDevEnv = Environment.GetEnvironmentVariable("AZURE_FUNCTIONS_ENVIRONMENT") == "Development" ? true : false;
             executionRoot = Environment.GetEnvironmentVariable("HOME") + "\\site\\wwwroot"; // where the azure function is running
             local_DB_path = Environment.GetEnvironmentVariable("local_DB_path"); // found in local.settings.json for development - Data\\database.db

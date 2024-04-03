@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace SoutienScolaire.Azure.Migrations
+namespace SoutienScolaireV1.Azure.Migrations
 {
     public partial class InitialCreate : Migration
     {
