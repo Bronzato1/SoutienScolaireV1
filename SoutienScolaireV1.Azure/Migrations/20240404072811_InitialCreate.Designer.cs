@@ -10,13 +10,14 @@ using SoutienScolaireV1.Azure.Models;
 namespace SoutienScolaireV1.Azure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240403170404_InitialCreate")]
+    [Migration("20240404072811_InitialCreate")]
     partial class InitialCreate
     {
+        /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "6.0.3");
+            modelBuilder.HasAnnotation("ProductVersion", "8.0.3");
 
             modelBuilder.Entity("SoutienScolaireV1.Azure.Models.Employee", b =>
                 {

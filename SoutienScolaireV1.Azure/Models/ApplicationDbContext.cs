@@ -1,33 +1,30 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
 using System.Linq;
-using System.Reflection;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
 
 namespace SoutienScolaireV1.Azure.Models
 {
     public class ApplicationDbContext : DbContext
     {
         public DbSet<Employee> Employees { get; set; }
-        
+
         private readonly ILogger<ApplicationDbContext> _logger;
 
         string local_DB_path;
         string azure_DB_path;
         string executionRoot;
-        
-        public ApplicationDbContext() 
-        {
-            // Constructor parameterless will be used for...
-            // dotnet ef migrations add...
-            // dotnet ef database update...
-        }
+
+        //public ApplicationDbContext()
+        //{
+        //    // Constructor parameterless will be used for...
+        //    // dotnet ef migrations add...
+        //    // dotnet ef database update...
+        //}
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, ILogger<ApplicationDbContext> logger) : base(options)
         {

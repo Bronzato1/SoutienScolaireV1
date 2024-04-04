@@ -1,10 +1,8 @@
 {
   "IsEncrypted": false,
   "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
     "local_DB_path": "Data\\database.db",
-    "FUNCTIONS_WORKER_RUNTIME": "dotnet"
-  },
-  "Host": {
-    "CORS": "*"
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated"
   }
 }

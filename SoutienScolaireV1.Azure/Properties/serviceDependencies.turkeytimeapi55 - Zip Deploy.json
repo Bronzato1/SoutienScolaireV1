@@ -1,15 +1,14 @@
 {
   "dependencies": {
-    "storage1": {
-      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Storage/storageAccounts/serverlessblazor8ad0",
-      "type": "storage.azure",
-      "connectionId": "AzureWebJobsStorage",
-      "dynamicId": null
-    },
     "appInsights1": {
       "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/microsoft.insights/components/turkeytimeapi55",
       "type": "appInsights.azure",
       "connectionId": "APPLICATIONINSIGHTS_CONNECTION_STRING"
+    },
+    "storage1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Storage/storageAccounts/serverlessblazor8ad0",
+      "type": "storage.azure",
+      "connectionId": "AzureWebJobsStorage"
     }
   }
 }
