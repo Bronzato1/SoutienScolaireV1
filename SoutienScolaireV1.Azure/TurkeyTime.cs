@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using SoutienScolaireV1.Azure.Models;
+using SoutienScolaireV1.Shared.Models;
 
 namespace SoutienScolaireV1.Azure
 {

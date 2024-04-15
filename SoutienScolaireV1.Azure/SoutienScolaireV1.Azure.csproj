@@ -42,4 +42,7 @@
   <ItemGroup>
     <Folder Include="Data\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SoutienScolaireV1.Shared\SoutienScolaireV1.Shared.csproj" />
+  </ItemGroup>
 </Project>

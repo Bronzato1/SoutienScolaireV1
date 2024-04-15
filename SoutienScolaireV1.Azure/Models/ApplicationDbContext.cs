@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using SoutienScolaireV1.Shared.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
